@@ -18,90 +18,9 @@ interface ClientsTableProps {
     statuses: string;
     languages: string;
   };
+  clients: any[];
 }
 
-const clientsData = [
-  {
-    id: "CL - 001",
-    name: "Micha Johnson",
-    email: "micha@gmail.com",
-    protocol: "Immune Up",
-    language: "English",
-    status: "Active",
-    lastSession: "01/07/2025",
-    avatar: "MJ"
-  },
-  {
-    id: "CL - 002",
-    name: "Sarah Johnson",
-    email: "sarah@gmail.com",
-    protocol: "Longevity",
-    language: "Polish",
-    status: "Inactive",
-    lastSession: "02/07/2025",
-    avatar: "SJ"
-  },
-  {
-    id: "CL - 003",
-    name: "David Chen",
-    email: "david@gmail.com",
-    protocol: "Beauty Glow",
-    language: "English",
-    status: "Pending",
-    lastSession: "03/07/2025",
-    avatar: "DC"
-  },
-  {
-    id: "CL - 004",
-    name: "Sophie Martin",
-    email: "sophie@gmail.com",
-    protocol: "Immune Up",
-    language: "Polish",
-    status: "Inactive",
-    lastSession: "04/07/2025",
-    avatar: "SM"
-  },
-  {
-    id: "CL - 005",
-    name: "John Doe",
-    email: "john@gmail.com",
-    protocol: "Beauty Glow",
-    language: "English",
-    status: "Active",
-    lastSession: "05/07/2025",
-    avatar: "JD"
-  },
-  {
-    id: "CL - 006",
-    name: "Samantha Wheeler",
-    email: "samantha@gmail.com",
-    protocol: "Longevity",
-    language: "Polish",
-    status: "Pending",
-    lastSession: "06/07/2025",
-    avatar: "SW"
-  },
-  {
-    id: "CL - 007",
-    name: "Harvey Specter",
-    email: "harvey@gmail.com",
-    protocol: "Immune Up",
-    language: "English",
-    status: "Active",
-    lastSession: "07/07/2025",
-    avatar: "HS"
-  },
-  {
-    id: "CL - 008",
-    name: "Jessica Pearson",
-    email: "jessica@gmail.com",
-    protocol: "Beauty Glow",
-    language: "Polish",
-    status: "Inactive",
-    lastSession: "08/07/2025",
-    avatar: "JP"
-  }
-];
 
 const getStatusColor = (status: string) => {
   switch (status) {
@@ -130,12 +49,12 @@ const getAvatarColor = (index: number) => {
   return colors[index % colors.length];
 };
 
-export default function ClientsTable({ filters }: ClientsTableProps) {
+export default function ClientsTable({ filters, clients }: ClientsTableProps) {
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(10);
   
   // Filter clients based on selected filters
-  const filteredClients = clientsData.filter(client => {
+  const filteredClients = clients.filter(client => {
     if (filters.statuses !== "All Statuses" && client.status !== filters.statuses) return false;
     if (filters.languages !== "All Languages" && client.language !== filters.languages) return false;
     return true;

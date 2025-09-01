@@ -5,8 +5,93 @@ import StatusChart from "@/components/clients/StatusChart";
 import RecentActivity from "@/components/clients/RecentActivity";
 import Filters from "@/components/clients/Filters";
 import ClientsTable from "@/components/clients/ClientsTable";
+import AddClientModal from "@/components/clients/AddClientModal";
+import SuccessPopup from "@/components/clients/SuccessPopup";
 import { Button } from "@/components/ui/button";
 import { Plus } from "lucide-react";
+
+const initialClientsData = [
+  {
+    id: "CL - 001",
+    name: "Micha Johnson",
+    email: "micha@gmail.com",
+    protocol: "Immune Up",
+    language: "English",
+    status: "Active",
+    lastSession: "01/07/2025",
+    avatar: "MJ"
+  },
+  {
+    id: "CL - 002",
+    name: "Sarah Johnson",
+    email: "sarah@gmail.com",
+    protocol: "Longevity",
+    language: "Polish",
+    status: "Inactive",
+    lastSession: "02/07/2025",
+    avatar: "SJ"
+  },
+  {
+    id: "CL - 003",
+    name: "David Chen",
+    email: "david@gmail.com",
+    protocol: "Beauty Glow",
+    language: "English",
+    status: "Pending",
+    lastSession: "03/07/2025",
+    avatar: "DC"
+  },
+  {
+    id: "CL - 004",
+    name: "Sophie Martin",
+    email: "sophie@gmail.com",
+    protocol: "Immune Up",
+    language: "Polish",
+    status: "Inactive",
+    lastSession: "04/07/2025",
+    avatar: "SM"
+  },
+  {
+    id: "CL - 005",
+    name: "John Doe",
+    email: "john@gmail.com",
+    protocol: "Beauty Glow",
+    language: "English",
+    status: "Active",
+    lastSession: "05/07/2025",
+    avatar: "JD"
+  },
+  {
+    id: "CL - 006",
+    name: "Samantha Wheeler",
+    email: "samantha@gmail.com",
+    protocol: "Longevity",
+    language: "Polish",
+    status: "Pending",
+    lastSession: "06/07/2025",
+    avatar: "SW"
+  },
+  {
+    id: "CL - 007",
+    name: "Harvey Specter",
+    email: "harvey@gmail.com",
+    protocol: "Immune Up",
+    language: "English",
+    status: "Active",
+    lastSession: "07/07/2025",
+    avatar: "HS"
+  },
+  {
+    id: "CL - 008",
+    name: "Jessica Pearson",
+    email: "jessica@gmail.com",
+    protocol: "Beauty Glow",
+    language: "Polish",
+    status: "Inactive",
+    lastSession: "08/07/2025",
+    avatar: "JP"
+  }
+];
 
 export default function Clients() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -15,6 +100,15 @@ export default function Clients() {
     statuses: "All Statuses", 
     languages: "All Languages"
   });
+  const [clients, setClients] = useState(initialClientsData);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [showSuccessPopup, setShowSuccessPopup] = useState(false);
+
+  const handleAddClient = (newClient: any) => {
+    // Add new client at the top of the list
+    setClients(prev => [newClient, ...prev]);
+    setShowSuccessPopup(true);
+  };
 
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900 flex" data-testid="clients-page">
@@ -52,6 +146,7 @@ export default function Clients() {
             <div className="flex flex-col sm:flex-row gap-4 items-start sm:items-center justify-between">
               <Filters filters={filters} onFiltersChange={setFilters} />
               <Button 
+                onClick={() => setIsModalOpen(true)}
                 className="bg-gray-900 hover:bg-gray-800 dark:bg-gray-700 dark:hover:bg-gray-600 text-white px-6 py-2 rounded-lg"
                 data-testid="button-add-client"
               >
@@ -61,10 +156,23 @@ export default function Clients() {
             </div>
             
             {/* Clients Table */}
-            <ClientsTable filters={filters} />
+            <ClientsTable filters={filters} clients={clients} />
           </div>
         </main>
       </div>
+
+      {/* Add Client Modal */}
+      <AddClientModal 
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        onAddClient={handleAddClient}
+      />
+
+      {/* Success Popup */}
+      <SuccessPopup 
+        isVisible={showSuccessPopup}
+        onClose={() => setShowSuccessPopup(false)}
+      />
     </div>
   );
 }
