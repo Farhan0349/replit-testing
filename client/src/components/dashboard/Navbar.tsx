@@ -10,9 +10,10 @@ import {
 
 interface NavbarProps {
   onMenuClick: () => void;
+  title?: string;
 }
 
-export default function Navbar({ onMenuClick }: NavbarProps) {
+export default function Navbar({ onMenuClick, title = "Dashboard" }: NavbarProps) {
   return (
     <header className="bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 px-4 lg:px-6 py-4">
       <div className="flex items-center justify-between">
@@ -41,7 +42,7 @@ export default function Navbar({ onMenuClick }: NavbarProps) {
           
           {/* Page Title */}
           <h1 className="text-xl lg:text-2xl font-semibold text-gray-900 dark:text-white" data-testid="text-page-title">
-            Dashboard
+            {title}
           </h1>
         </div>
 

@@ -15,26 +15,27 @@ import {
 interface SidebarProps {
   isOpen: boolean;
   onClose: () => void;
+  currentPage?: string;
 }
 
-const navigationItems = [
-  { icon: LayoutDashboard, label: "Dashboard", isActive: true },
-  { icon: Users, label: "Clients", isActive: false },
-  { icon: FileText, label: "Lab Reports", isActive: false },
-  { icon: BarChart3, label: "Reports", isActive: false },
-  { icon: CreditCard, label: "Payments", isActive: false },
-  { icon: TrendingUp, label: "Progress", isActive: false },
-  { icon: MessageSquare, label: "Questionnaire", isActive: false },
-  { icon: Calendar, label: "Session Management", isActive: false },
-  { icon: Settings, label: "Settings", isActive: false },
+const getNavigationItems = (currentPage: string) => [
+  { icon: LayoutDashboard, label: "Dashboard", isActive: currentPage === "dashboard", path: "/dashboard" },
+  { icon: Users, label: "Clients", isActive: currentPage === "clients", path: "/clients" },
+  { icon: FileText, label: "Lab Reports", isActive: currentPage === "lab-reports", path: "/lab-reports" },
+  { icon: BarChart3, label: "Reports", isActive: currentPage === "reports", path: "/reports" },
+  { icon: CreditCard, label: "Payments", isActive: currentPage === "payments", path: "/payments" },
+  { icon: TrendingUp, label: "Progress", isActive: currentPage === "progress", path: "/progress" },
+  { icon: MessageSquare, label: "Questionnaire", isActive: currentPage === "questionnaire", path: "/questionnaire" },
+  { icon: Calendar, label: "Session Management", isActive: currentPage === "session-management", path: "/session-management" },
+  { icon: Settings, label: "Settings", isActive: currentPage === "settings", path: "/settings" },
 ];
 
-export default function Sidebar({ isOpen, onClose }: SidebarProps) {
+export default function Sidebar({ isOpen, onClose, currentPage = "dashboard" }: SidebarProps) {
   return (
     <>
       {/* Desktop Sidebar */}
       <aside className="hidden lg:flex lg:flex-col lg:w-64 bg-white dark:bg-gray-800 border-r border-gray-200 dark:border-gray-700">
-        <SidebarContent />
+        <SidebarContent currentPage={currentPage} />
       </aside>
 
       {/* Mobile Sidebar */}
@@ -61,13 +62,14 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
             <X className="w-5 h-5 text-gray-500 dark:text-gray-400" />
           </button>
         </div>
-        <SidebarContent />
+        <SidebarContent currentPage={currentPage} />
       </aside>
     </>
   );
 }
 
-function SidebarContent() {
+function SidebarContent({ currentPage }: { currentPage: string }) {
+  const navigationItems = getNavigationItems(currentPage);
   return (
     <div className="flex flex-col h-full">
       {/* Logo - Desktop only */}
