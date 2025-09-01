@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useLocation } from "wouter";
 import { Eye, EyeOff } from "lucide-react";
 
 interface LoginFormProps {
@@ -6,6 +7,7 @@ interface LoginFormProps {
 }
 
 export default function LoginForm({ onForgotPassword }: LoginFormProps) {
+  const [, setLocation] = useLocation();
   const [showPassword, setShowPassword] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -15,6 +17,10 @@ export default function LoginForm({ onForgotPassword }: LoginFormProps) {
     e.preventDefault();
     // Handle login logic here
     console.log("Login attempted with:", { email, password, rememberMe });
+    
+    // For demo purposes, navigate to dashboard after form submission
+    // In a real app, you'd validate credentials first
+    setLocation("/dashboard");
   };
 
   return (
