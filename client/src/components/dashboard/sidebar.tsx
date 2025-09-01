@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { X, BarChart3, Users, FileText, CreditCard, TrendingUp, HelpCircle, Settings, ChevronRight } from "lucide-react";
 import { cn } from "@/lib/utils";
+import UpdateCard from "./update-card";
 
 interface SidebarProps {
   isOpen: boolean;
@@ -32,7 +33,7 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
       
       {/* Sidebar */}
       <div className={cn(
-        "fixed top-0 left-0 z-50 h-full w-64 bg-white shadow-lg transform transition-transform duration-300 ease-in-out lg:translate-x-0 lg:static lg:inset-0",
+        "fixed top-0 left-0 z-50 h-full w-64 bg-white shadow-lg transform transition-transform duration-300 ease-in-out lg:translate-x-0 lg:static lg:inset-0 flex flex-col",
         isOpen ? "translate-x-0" : "-translate-x-full"
       )}>
         {/* Header */}
@@ -60,8 +61,8 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
         </div>
 
         {/* Menu Items */}
-        <nav className="mt-6 px-3" data-testid="nav-sidebar">
-          <ul className="space-y-2">
+        <nav className="mt-6 px-3 flex-1 flex flex-col" data-testid="nav-sidebar">
+          <ul className="space-y-2 flex-1">
             {menuItems.map((item, index) => (
               <li key={index}>
                 <button
@@ -79,6 +80,11 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
               </li>
             ))}
           </ul>
+          
+          {/* Update Card at bottom */}
+          <div className="mt-auto mb-4">
+            <UpdateCard />
+          </div>
         </nav>
       </div>
     </>

@@ -20,34 +20,32 @@ export default function Dashboard() {
         <Navbar onMenuClick={() => setSidebarOpen(true)} />
         
         {/* Dashboard Content */}
-        <main className="flex-1 p-6 space-y-6" data-testid="main-dashboard">
+        <main className="flex-1 p-[24px]" data-testid="main-dashboard">
           {/* Page Title */}
-          <div className="mb-6">
-            <h1 className="text-2xl font-semibold text-gray-900" data-testid="heading-dashboard">
+          <div className="mb-[32px]">
+            <h1 className="text-[24px] font-semibold text-gray-900" data-testid="heading-dashboard">
               Dashboard
             </h1>
           </div>
 
           {/* Stats Cards */}
-          <StatsCards />
+          <div className="mb-[32px]">
+            <StatsCards />
+          </div>
 
           {/* Analytics and Recent Upload Row */}
-          <div className="grid grid-cols-1 xl:grid-cols-3 gap-6">
+          <div className="grid grid-cols-3 gap-[24px] mb-[24px]">
             {/* Analytics Chart */}
-            <div className="xl:col-span-2">
+            <div className="col-span-2">
               <Analytics />
             </div>
             
             {/* Recent Upload */}
-            <div className="xl:col-span-1">
+            <div className="col-span-1">
               <RecentUpload />
             </div>
           </div>
 
-          {/* Update Card */}
-          <div className="max-w-xs">
-            <UpdateCard />
-          </div>
         </main>
       </div>
     </div>

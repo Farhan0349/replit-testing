@@ -39,14 +39,14 @@ export default function Analytics() {
   };
 
   return (
-    <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-200" data-testid="card-analytics">
+    <div className="bg-white rounded-[12px] p-[24px] shadow-sm border border-gray-200" data-testid="card-analytics">
       {/* Header */}
-      <div className="flex items-center justify-between mb-6">
+      <div className="flex items-center justify-between mb-[24px]">
         <div>
-          <h2 className="text-lg font-semibold text-gray-900 mb-1" data-testid="heading-analytics">
+          <h2 className="text-[16px] font-semibold text-gray-900 mb-[4px]" data-testid="heading-analytics">
             Analytics
           </h2>
-          <p className="text-sm text-gray-500">Data for 2024</p>
+          <p className="text-[12px] text-gray-500">Data for 2024</p>
         </div>
         <div className="flex items-center space-x-2">
           <button className="flex items-center space-x-2 px-3 py-2 text-sm border border-gray-300 rounded-lg hover:bg-gray-50" data-testid="button-date-filter">

@@ -1,20 +1,20 @@
 export default function RecentUpload() {
   return (
-    <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-200" data-testid="card-recent-upload">
+    <div className="bg-white rounded-[12px] p-[24px] shadow-sm border border-gray-200 h-fit" data-testid="card-recent-upload">
       {/* Header */}
-      <div className="mb-6">
-        <h2 className="text-lg font-semibold text-gray-900" data-testid="heading-recent-upload">
+      <div className="mb-[20px]">
+        <h2 className="text-[16px] font-semibold text-gray-900" data-testid="heading-recent-upload">
           Recent Upload Report
         </h2>
       </div>
 
       {/* User Card */}
-      <div className="text-center mb-6">
+      <div className="text-center mb-[20px]">
         {/* Avatar */}
-        <div className="w-24 h-24 mx-auto mb-4 relative">
-          <div className="w-full h-full bg-gradient-to-br from-orange-100 to-orange-200 rounded-xl flex items-center justify-center">
+        <div className="w-[80px] h-[80px] mx-auto mb-[16px] relative">
+          <div className="w-full h-full bg-gradient-to-br from-orange-100 to-orange-200 rounded-[12px] flex items-center justify-center">
             {/* 3D Character Illustration */}
-            <div className="w-20 h-20 relative">
+            <div className="w-[64px] h-[64px] relative">
               {/* Head */}
               <div className="w-12 h-12 bg-gradient-to-br from-orange-300 to-orange-400 rounded-full mx-auto mb-1 relative">
                 {/* Hair */}

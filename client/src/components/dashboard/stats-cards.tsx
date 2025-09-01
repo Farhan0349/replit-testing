@@ -7,7 +7,7 @@ const statsData = [
     icon: Users,
     bgColor: "bg-blue-50",
     iconColor: "text-blue-600",
-    borderColor: "border-blue-200",
+    borderColor: "border-blue-400",
   },
   {
     title: "New Clients",
@@ -15,7 +15,7 @@ const statsData = [
     icon: UserPlus,
     bgColor: "bg-orange-50",
     iconColor: "text-orange-600",
-    borderColor: "border-orange-200",
+    borderColor: "border-orange-300",
   },
   {
     title: "Active Clients",
@@ -23,7 +23,7 @@ const statsData = [
     icon: UserCheck,
     bgColor: "bg-cyan-50", 
     iconColor: "text-cyan-600",
-    borderColor: "border-cyan-200",
+    borderColor: "border-cyan-300",
   },
   {
     title: "Inactive Clients",
@@ -31,30 +31,30 @@ const statsData = [
     icon: UserX,
     bgColor: "bg-pink-50",
     iconColor: "text-pink-600", 
-    borderColor: "border-pink-200",
+    borderColor: "border-pink-300",
   },
 ];
 
 export default function StatsCards() {
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+    <div className="grid grid-cols-4 gap-[20px]">
       {statsData.map((stat, index) => (
         <div
           key={index}
-          className={`bg-white rounded-xl border-2 ${stat.borderColor} p-6 hover:shadow-md transition-shadow duration-200`}
+          className={`bg-white rounded-[12px] border-2 ${stat.borderColor} p-[20px] hover:shadow-md transition-shadow duration-200`}
           data-testid={`card-${stat.title.toLowerCase().replace(/\s+/g, '-')}`}
         >
-          <div className="flex items-center justify-between">
+          <div className="flex items-start justify-between">
             <div>
-              <p className="text-2xl font-bold text-gray-900 mb-1" data-testid={`value-${stat.title.toLowerCase().replace(/\s+/g, '-')}`}>
+              <p className="text-[32px] font-bold text-gray-900 mb-[4px] leading-none" data-testid={`value-${stat.title.toLowerCase().replace(/\s+/g, '-')}`}>
                 {stat.value}
               </p>
-              <p className="text-sm font-medium text-gray-600" data-testid={`title-${stat.title.toLowerCase().replace(/\s+/g, '-')}`}>
+              <p className="text-[14px] font-medium text-gray-600" data-testid={`title-${stat.title.toLowerCase().replace(/\s+/g, '-')}`}>
                 {stat.title}
               </p>
             </div>
-            <div className={`w-12 h-12 ${stat.bgColor} rounded-lg flex items-center justify-center`}>
-              <stat.icon className={`w-6 h-6 ${stat.iconColor}`} />
+            <div className={`w-[40px] h-[40px] ${stat.bgColor} rounded-[8px] flex items-center justify-center mt-[2px]`}>
+              <stat.icon className={`w-[20px] h-[20px] ${stat.iconColor}`} />
             </div>
           </div>
         </div>
