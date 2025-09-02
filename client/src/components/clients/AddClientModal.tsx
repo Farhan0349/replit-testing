@@ -25,7 +25,7 @@ export default function AddClientModal({ isOpen, onClose, onAddClient }: AddClie
     email: "",
     contactNumber: "",
     age: "",
-    language: "",
+    language: "All Languages",
     note: "",
     status: "Active"
   });
@@ -70,24 +70,24 @@ export default function AddClientModal({ isOpen, onClose, onAddClient }: AddClie
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4" data-testid="modal-backdrop">
-      <div className="bg-white dark:bg-gray-800 rounded-xl shadow-2xl w-full max-w-md max-h-[90vh] overflow-y-auto" data-testid="modal-add-client">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-start justify-end z-50 p-4" data-testid="modal-backdrop">
+      <div className="bg-white dark:bg-gray-800 rounded-xl shadow-2xl w-full max-w-md max-h-[90vh] overflow-y-auto mt-16 mr-4" data-testid="modal-add-client">
         {/* Modal Header */}
-        <div className="flex items-center justify-between p-6 border-b border-gray-200 dark:border-gray-700">
-          <h2 className="text-lg font-semibold text-gray-900 dark:text-white" data-testid="text-modal-title">
+        <div className="flex items-center justify-between p-6 border-b border-gray-100 dark:border-gray-700">
+          <h2 className="text-xl font-semibold text-gray-900 dark:text-white" data-testid="text-modal-title">
             Add New Client
           </h2>
           <button
             onClick={onClose}
-            className="p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors"
+            className="p-1 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-md transition-colors"
             data-testid="button-close-modal"
           >
-            <X className="w-5 h-5 text-gray-500 dark:text-gray-400" />
+            <X className="w-4 h-4 text-gray-400 dark:text-gray-500" />
           </button>
         </div>
 
         {/* Modal Body */}
-        <form onSubmit={handleSubmit} className="p-6 space-y-4">
+        <form onSubmit={handleSubmit} className="p-6 space-y-5">
           {/* Client Name */}
           <div className="space-y-2">
             <Label htmlFor="name" className="text-sm font-medium text-gray-700 dark:text-gray-300">
@@ -99,7 +99,7 @@ export default function AddClientModal({ isOpen, onClose, onAddClient }: AddClie
               placeholder="Client Name"
               value={formData.name}
               onChange={(e) => setFormData(prev => ({ ...prev, name: e.target.value }))}
-              className="w-full"
+              className="w-full h-11 border-gray-200 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-400 rounded-lg"
               required
               data-testid="input-client-name"
             />
@@ -116,7 +116,7 @@ export default function AddClientModal({ isOpen, onClose, onAddClient }: AddClie
               placeholder="Client Email"
               value={formData.email}
               onChange={(e) => setFormData(prev => ({ ...prev, email: e.target.value }))}
-              className="w-full"
+              className="w-full h-11 border-gray-200 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-400 rounded-lg"
               required
               data-testid="input-client-email"
             />
@@ -133,7 +133,7 @@ export default function AddClientModal({ isOpen, onClose, onAddClient }: AddClie
               placeholder="Contact Number"
               value={formData.contactNumber}
               onChange={(e) => setFormData(prev => ({ ...prev, contactNumber: e.target.value }))}
-              className="w-full"
+              className="w-full h-11 border-gray-200 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-400 rounded-lg"
               data-testid="input-contact-number"
             />
           </div>
@@ -149,7 +149,7 @@ export default function AddClientModal({ isOpen, onClose, onAddClient }: AddClie
               placeholder="Client Age"
               value={formData.age}
               onChange={(e) => setFormData(prev => ({ ...prev, age: e.target.value }))}
-              className="w-full"
+              className="w-full h-11 border-gray-200 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-400 rounded-lg"
               data-testid="input-client-age"
             />
           </div>
@@ -159,15 +159,14 @@ export default function AddClientModal({ isOpen, onClose, onAddClient }: AddClie
             <Label className="text-sm font-medium text-gray-700 dark:text-gray-300">
               Language
             </Label>
-            <Select value={formData.language} onValueChange={(value) => setFormData(prev => ({ ...prev, language: value }))}>
-              <SelectTrigger className="w-full" data-testid="select-language">
-                <SelectValue placeholder="Select Language" />
+            <Select value={formData.language || "All Languages"} onValueChange={(value) => setFormData(prev => ({ ...prev, language: value }))}>
+              <SelectTrigger className="w-full h-11 border-gray-200 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-400 rounded-lg" data-testid="select-language">
+                <SelectValue placeholder="All Languages" />
               </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="English">English</SelectItem>
-                <SelectItem value="Polish">Polish</SelectItem>
-                <SelectItem value="Spanish">Spanish</SelectItem>
-                <SelectItem value="French">French</SelectItem>
+              <SelectContent className="bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-600 rounded-lg shadow-lg">
+                <SelectItem value="All Languages" className="text-sm py-2 px-3 hover:bg-gray-50 dark:hover:bg-gray-700">All Languages</SelectItem>
+                <SelectItem value="Polish" className="text-sm py-2 px-3 hover:bg-gray-50 dark:hover:bg-gray-700">Polish</SelectItem>
+                <SelectItem value="English" className="text-sm py-2 px-3 hover:bg-gray-50 dark:hover:bg-gray-700">English</SelectItem>
               </SelectContent>
             </Select>
           </div>
@@ -179,10 +178,10 @@ export default function AddClientModal({ isOpen, onClose, onAddClient }: AddClie
             </Label>
             <Textarea
               id="note"
-              placeholder="Add a note..."
+              placeholder=""
               value={formData.note}
               onChange={(e) => setFormData(prev => ({ ...prev, note: e.target.value }))}
-              className="w-full h-20 resize-none"
+              className="w-full h-20 resize-none border-gray-200 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-400 rounded-lg"
               data-testid="textarea-note"
             />
           </div>
@@ -192,44 +191,58 @@ export default function AddClientModal({ isOpen, onClose, onAddClient }: AddClie
             <Label className="text-sm font-medium text-gray-700 dark:text-gray-300">
               Status :
             </Label>
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-3">
               <button
                 type="button"
                 onClick={() => setFormData(prev => ({ ...prev, status: "Active" }))}
                 className={cn(
-                  "flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-colors",
+                  "flex items-center gap-2 text-sm font-medium transition-colors",
                   formData.status === "Active"
-                    ? "bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400"
-                    : "bg-gray-100 text-gray-600 dark:bg-gray-700 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-600"
+                    ? "text-green-600 dark:text-green-400"
+                    : "text-gray-500 dark:text-gray-400"
                 )}
                 data-testid="button-status-active"
               >
-                <div className="w-3 h-3 bg-green-500 rounded-full" />
+                <div className={cn(
+                  "w-4 h-4 rounded-full border-2 flex items-center justify-center",
+                  formData.status === "Active"
+                    ? "border-green-500 bg-green-500"
+                    : "border-gray-300 dark:border-gray-600"
+                )}>
+                  {formData.status === "Active" && <div className="w-2 h-2 bg-white rounded-full" />}
+                </div>
                 Active
               </button>
               <button
                 type="button"
                 onClick={() => setFormData(prev => ({ ...prev, status: "Inactive" }))}
                 className={cn(
-                  "flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-colors",
+                  "flex items-center gap-2 text-sm font-medium transition-colors",
                   formData.status === "Inactive"
-                    ? "bg-gray-800 text-white dark:bg-gray-600"
-                    : "bg-gray-100 text-gray-600 dark:bg-gray-700 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-600"
+                    ? "text-gray-800 dark:text-gray-200"
+                    : "text-gray-500 dark:text-gray-400"
                 )}
                 data-testid="button-status-inactive"
               >
-                <div className="w-3 h-3 bg-gray-500 rounded-full" />
+                <div className={cn(
+                  "w-4 h-4 rounded-full border-2 flex items-center justify-center",
+                  formData.status === "Inactive"
+                    ? "border-gray-800 bg-gray-800 dark:border-gray-400 dark:bg-gray-400"
+                    : "border-gray-300 dark:border-gray-600"
+                )}>
+                  {formData.status === "Inactive" && <div className="w-2 h-2 bg-white rounded-full" />}
+                </div>
                 Inactive
               </button>
             </div>
           </div>
 
           {/* Submit Button */}
-          <div className="pt-4">
+          <div className="pt-6">
             <Button 
               type="submit"
-              className="w-full bg-gray-900 hover:bg-gray-800 dark:bg-gray-700 dark:hover:bg-gray-600 text-white rounded-lg h-12"
-              disabled={!formData.name || !formData.email || !formData.language}
+              className="w-full bg-black hover:bg-gray-900 dark:bg-gray-900 dark:hover:bg-gray-800 text-white rounded-lg h-11 font-medium text-sm"
+              disabled={!formData.name || !formData.email}
               data-testid="button-add-client-submit"
             >
               Add
