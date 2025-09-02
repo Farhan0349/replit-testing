@@ -7,6 +7,7 @@ import NotFound from "@/pages/not-found";
 import AuthPage from "@/pages/auth";
 import Dashboard from "@/pages/dashboard";
 import Clients from "@/pages/clients";
+import LabReports from "@/pages/lab-reports";
 
 function Router() {
   return (
@@ -14,6 +15,7 @@ function Router() {
       <Route path="/" component={AuthPage} />
       <Route path="/dashboard" component={Dashboard} />
       <Route path="/clients" component={Clients} />
+      <Route path="/lab-reports" component={LabReports} />
       <Route component={NotFound} />
     </Switch>
   );
