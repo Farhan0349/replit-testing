@@ -10,8 +10,10 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { Eye, Edit, ChevronLeft, ChevronRight } from "lucide-react";
+import { Eye, Edit, X, ChevronLeft, ChevronRight } from "lucide-react";
 import { cn } from "@/lib/utils";
+import RejectReasonModal from "@/components/lab-reports/RejectReasonModal";
+import RejectSuccessPopup from "@/components/lab-reports/RejectSuccessPopup";
 
 const initialLabReportsData = [
   {
@@ -132,12 +134,31 @@ export default function LabReports() {
   const [reports] = useState(initialLabReportsData);
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage] = useState(10);
+  const [isRejectModalOpen, setIsRejectModalOpen] = useState(false);
+  const [showRejectSuccessPopup, setShowRejectSuccessPopup] = useState(false);
+  const [selectedReportId, setSelectedReportId] = useState<string | null>(null);
 
   const totalReports = reports.length;
   const totalPages = Math.ceil(totalReports / itemsPerPage);
   const startIndex = (currentPage - 1) * itemsPerPage;
   const endIndex = Math.min(startIndex + itemsPerPage, totalReports);
   const currentReports = reports.slice(startIndex, endIndex);
+
+  const handleRejectClick = (reportId: string) => {
+    setSelectedReportId(reportId);
+    setIsRejectModalOpen(true);
+  };
+
+  const handleRejectSubmit = (reason: string) => {
+    // Here you would typically call an API to reject the report
+    console.log(`Rejecting report ${selectedReportId} with reason: ${reason}`);
+    setShowRejectSuccessPopup(true);
+  };
+
+  const handleSuccessClose = () => {
+    setShowRejectSuccessPopup(false);
+    setSelectedReportId(null);
+  };
 
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900 flex">
@@ -251,9 +272,10 @@ export default function LabReports() {
                           <Button 
                             variant="ghost" 
                             size="icon" 
-                            className="w-8 h-8 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 p-0"
+                            className="w-8 h-8 text-red-400 hover:text-red-600 dark:hover:text-red-300 p-0"
+                            onClick={() => handleRejectClick(report.id)}
                           >
-                            <Edit className="w-4 h-4" />
+                            <X className="w-4 h-4" />
                           </Button>
                         </div>
                       </div>
@@ -306,6 +328,19 @@ export default function LabReports() {
           </div>
         </main>
       </div>
+
+      {/* Reject Reason Modal */}
+      <RejectReasonModal 
+        isOpen={isRejectModalOpen}
+        onClose={() => setIsRejectModalOpen(false)}
+        onSubmit={handleRejectSubmit}
+      />
+
+      {/* Reject Success Popup */}
+      <RejectSuccessPopup 
+        isVisible={showRejectSuccessPopup}
+        onClose={handleSuccessClose}
+      />
     </div>
   );
 }
