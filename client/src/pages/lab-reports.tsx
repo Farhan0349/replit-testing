@@ -183,10 +183,10 @@ export default function LabReports() {
           <div className="max-w-7xl mx-auto space-y-6">
             
             {/* Filters */}
-            <div className="flex flex-col sm:flex-row gap-4 items-start sm:items-center">
-              <div className="flex gap-4">
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 items-start sm:items-center">
+              <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 w-full sm:w-auto">
                 <Select value={filters.clients} onValueChange={(value) => setFilters(prev => ({ ...prev, clients: value }))}>
-                  <SelectTrigger className="w-40 h-11 bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-600">
+                  <SelectTrigger className="w-full sm:w-40 h-10 sm:h-11 bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-600">
                     <SelectValue />
                   </SelectTrigger>
                   <SelectContent>
@@ -197,7 +197,7 @@ export default function LabReports() {
                 </Select>
                 
                 <Select value={filters.reportStatus} onValueChange={(value) => setFilters(prev => ({ ...prev, reportStatus: value }))}>
-                  <SelectTrigger className="w-40 h-11 bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-600">
+                  <SelectTrigger className="w-full sm:w-40 h-10 sm:h-11 bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-600">
                     <SelectValue />
                   </SelectTrigger>
                   <SelectContent>
@@ -213,8 +213,8 @@ export default function LabReports() {
             {/* Lab Reports Table */}
             <Card className="bg-white dark:bg-gray-800">
               <CardContent className="p-0">
-                {/* Table Header */}
-                <div className="px-6 py-4 border-b border-gray-100 dark:border-gray-700">
+                {/* Desktop Table Header */}
+                <div className="hidden md:block px-6 py-4 border-b border-gray-100 dark:border-gray-700">
                   <div className="grid grid-cols-[120px,1fr,1fr,120px] gap-6 text-sm font-medium text-gray-600 dark:text-gray-400">
                     <div>Report ID</div>
                     <div>Client Name</div>
@@ -222,15 +222,26 @@ export default function LabReports() {
                     <div>Actions</div>
                   </div>
                 </div>
+
+                {/* Mobile Table Header */}
+                <div className="md:hidden px-4 py-3 border-b border-gray-100 dark:border-gray-700">
+                  <div className="grid grid-cols-[80px,1fr,1fr,60px] gap-3 text-xs font-medium text-gray-600 dark:text-gray-400">
+                    <div>Report ID</div>
+                    <div>Client Name</div>
+                    <div>Report Name</div>
+                    <div>Actions</div>
+                  </div>
+                </div>
                 
-                {/* Table Body */}
+                {/* Table Body - Responsive */}
                 <div className="divide-y divide-gray-100 dark:divide-gray-700">
                   {currentReports.map((report, index) => (
                     <div 
                       key={report.id} 
-                      className="px-6 py-4 hover:bg-gray-50 dark:hover:bg-gray-700/30 transition-colors"
+                      className="px-4 md:px-6 py-3 md:py-4 hover:bg-gray-50 dark:hover:bg-gray-700/30 transition-colors"
                     >
-                      <div className="grid grid-cols-[120px,1fr,1fr,120px] gap-6 items-center">
+                      {/* Desktop Layout */}
+                      <div className="hidden md:grid md:grid-cols-[120px,1fr,1fr,120px] gap-6 items-center">
                         {/* Report ID */}
                         <div className="text-sm text-gray-900 dark:text-white font-medium">
                           {report.id}
@@ -279,16 +290,77 @@ export default function LabReports() {
                           </Button>
                         </div>
                       </div>
+
+                      {/* Mobile Layout */}
+                      <div className="md:hidden grid grid-cols-[80px,1fr,1fr,60px] gap-3 items-center">
+                        {/* Report ID */}
+                        <div className="text-xs text-gray-900 dark:text-white font-medium">
+                          {report.id}
+                        </div>
+                        
+                        {/* Client Name with Avatar */}
+                        <div className="flex items-center gap-2">
+                          <div className={cn(
+                            "w-6 h-6 rounded-full flex items-center justify-center text-white text-xs font-medium",
+                            getAvatarColor(index)
+                          )}>
+                            {report.avatar}
+                          </div>
+                          <div className="min-w-0">
+                            <div className="text-xs text-gray-900 dark:text-white font-medium truncate">
+                              {report.clientName.split(' ')[0]}
+                            </div>
+                            <div className="text-xs text-gray-900 dark:text-white font-medium truncate">
+                              {report.clientName.split(' ').slice(1).join(' ')}
+                            </div>
+                          </div>
+                        </div>
+                        
+                        {/* Report Name */}
+                        <div className="min-w-0">
+                          <button className="text-xs text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300 font-medium underline underline-offset-2 truncate block">
+                            {report.reportName.split(' ')[0]}
+                          </button>
+                          {report.reportName.split(' ').length > 1 && (
+                            <button className="text-xs text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300 font-medium underline underline-offset-2 truncate block">
+                              {report.reportName.split(' ').slice(1).join(' ')}
+                            </button>
+                          )}
+                        </div>
+                        
+                        {/* Actions */}
+                        <div className="flex flex-col items-center gap-1">
+                          <Button 
+                            variant="ghost" 
+                            size="icon" 
+                            className="w-6 h-6 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 p-0"
+                          >
+                            <Eye className="w-3 h-3" />
+                          </Button>
+                          <div className={cn(
+                            "w-2 h-2 rounded-full",
+                            getStatusIndicator(report.status)
+                          )} />
+                          <Button 
+                            variant="ghost" 
+                            size="icon" 
+                            className="w-6 h-6 text-red-400 hover:text-red-600 dark:hover:text-red-300 p-0"
+                            onClick={() => handleRejectClick(report.id)}
+                          >
+                            <X className="w-3 h-3" />
+                          </Button>
+                        </div>
+                      </div>
                     </div>
                   ))}
                 </div>
                 
                 {/* Pagination */}
-                <div className="px-6 py-4 border-t border-gray-100 dark:border-gray-700 flex items-center justify-between">
-                  <div className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
-                    <span>Rows per page:</span>
+                <div className="px-4 md:px-6 py-3 md:py-4 border-t border-gray-100 dark:border-gray-700 flex flex-col sm:flex-row gap-3 sm:gap-0 items-start sm:items-center justify-between">
+                  <div className="flex items-center gap-2 text-xs sm:text-sm text-gray-600 dark:text-gray-400">
+                    <span className="hidden sm:inline">Rows per page:</span>
                     <Select value={itemsPerPage.toString()} disabled>
-                      <SelectTrigger className="w-16 h-8">
+                      <SelectTrigger className="w-12 sm:w-16 h-6 sm:h-8 text-xs">
                         <SelectValue />
                       </SelectTrigger>
                       <SelectContent>
@@ -297,28 +369,28 @@ export default function LabReports() {
                     </Select>
                   </div>
                   
-                  <div className="flex items-center gap-4">
-                    <span className="text-sm text-gray-600 dark:text-gray-400">
+                  <div className="flex items-center gap-2 sm:gap-4">
+                    <span className="text-xs sm:text-sm text-gray-600 dark:text-gray-400">
                       {startIndex + 1}-{endIndex} of {totalReports}
                     </span>
                     <div className="flex items-center gap-1">
                       <Button 
                         variant="ghost" 
                         size="icon" 
-                        className="w-8 h-8"
+                        className="w-6 h-6 sm:w-8 sm:h-8"
                         onClick={() => setCurrentPage(prev => Math.max(1, prev - 1))}
                         disabled={currentPage === 1}
                       >
-                        <ChevronLeft className="w-4 h-4" />
+                        <ChevronLeft className="w-3 h-3 sm:w-4 sm:h-4" />
                       </Button>
                       <Button 
                         variant="ghost" 
                         size="icon" 
-                        className="w-8 h-8"
+                        className="w-6 h-6 sm:w-8 sm:h-8"
                         onClick={() => setCurrentPage(prev => Math.min(totalPages, prev + 1))}
                         disabled={currentPage === totalPages}
                       >
-                        <ChevronRight className="w-4 h-4" />
+                        <ChevronRight className="w-3 h-3 sm:w-4 sm:h-4" />
                       </Button>
                     </div>
                   </div>
