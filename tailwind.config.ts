@@ -24,10 +24,17 @@ export default {
         primary: {
           DEFAULT: "var(--primary)",
           foreground: "var(--primary-foreground)",
+          black: "var(--primary-black)",
+          white: "var(--primary-white)",
         },
         secondary: {
           DEFAULT: "var(--secondary)",
           foreground: "var(--secondary-foreground)",
+          1: "var(--secondary-1)",
+          2: "var(--secondary-2)",
+          3: "var(--secondary-3)",
+          4: "var(--secondary-4)",
+          5: "var(--secondary-5)",
         },
         muted: {
           DEFAULT: "var(--muted)",
@@ -61,11 +68,29 @@ export default {
           border: "var(--sidebar-border)",
           ring: "var(--sidebar-ring)",
         },
+        "bg-gradient": {
+          1: "var(--bg-gradient-1)",
+          2: "var(--bg-gradient-2)",
+          3: "var(--bg-gradient-3)",
+          4: "var(--bg-gradient-4)",
+        },
+        "gen-gradient": {
+          1: "var(--gen-gradient-1)",
+          2: "var(--gen-gradient-2)",
+          3: "var(--gen-gradient-3)",
+        },
+        "zen-gradient": {
+          1: "var(--zen-gradient-1)",
+          2: "var(--zen-gradient-2)",
+          3: "var(--zen-gradient-3)",
+        },
       },
       fontFamily: {
-        sans: ["Inter", "system-ui", "sans-serif"],
-        serif: ["var(--font-serif)"],
-        mono: ["var(--font-mono)"],
+        heading: ["var(--font-heading)"],
+        body: ["var(--font-body)"],
+        sans: ["Satoshi", "system-ui", "sans-serif"],
+        serif: ["Beausite", "Georgia", "serif"],
+        mono: ["JetBrains Mono", "monospace"],
       },
       keyframes: {
         "accordion-down": {

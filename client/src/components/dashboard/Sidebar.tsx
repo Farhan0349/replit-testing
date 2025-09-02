@@ -52,7 +52,7 @@ export default function Sidebar({ isOpen, onClose, currentPage = "dashboard" }: 
             <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
               <span className="text-white font-bold text-sm">GZ</span>
             </div>
-            <span className="font-semibold text-gray-900 dark:text-white">GEN ZEN</span>
+            <span className="font-heading font-normal text-gray-900 dark:text-white">GEN ZEN</span>
           </div>
           <button
             onClick={onClose}
@@ -77,7 +77,7 @@ function SidebarContent({ currentPage }: { currentPage: string }) {
         <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
           <span className="text-white font-bold text-sm">GZ</span>
         </div>
-        <span className="font-semibold text-gray-900 dark:text-white">GEN ZEN</span>
+        <span className="font-heading font-normal text-gray-900 dark:text-white">GEN ZEN</span>
       </div>
 
       {/* Navigation */}
@@ -96,7 +96,7 @@ function SidebarContent({ currentPage }: { currentPage: string }) {
               data-testid={`nav-${item.label.toLowerCase().replace(/\s+/g, '-')}`}
             >
               <Icon className="w-5 h-5" />
-              <span>{item.label}</span>
+              <span className="font-body font-medium">{item.label}</span>
             </button>
           );
         })}
@@ -107,10 +107,10 @@ function SidebarContent({ currentPage }: { currentPage: string }) {
         <div className="bg-gradient-to-br from-gray-800 to-gray-900 dark:from-gray-700 dark:to-gray-800 rounded-lg p-4 text-white relative overflow-hidden">
           <div className="absolute inset-0 bg-black/20" />
           <div className="relative z-10">
-            <h3 className="font-medium text-sm mb-1">New Updates</h3>
-            <p className="text-xs text-gray-300 mb-3">Available</p>
+            <h3 className="font-heading font-light text-sm mb-1">New Updates</h3>
+            <p className="text-xs text-gray-300 mb-3 font-body">Available</p>
             <button 
-              className="bg-white text-gray-900 px-3 py-1.5 rounded-md text-xs font-medium hover:bg-gray-100 transition-colors"
+              className="bg-white text-gray-900 px-3 py-1.5 rounded-md text-xs font-body font-medium hover:bg-gray-100 transition-colors"
               data-testid="button-view-all-updates"
             >
               View all

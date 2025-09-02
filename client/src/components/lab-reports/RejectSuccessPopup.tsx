@@ -22,10 +22,10 @@ export default function RejectSuccessPopup({ isVisible, onClose }: RejectSuccess
           
           {/* Success Message */}
           <div className="space-y-1 md:space-y-2">
-            <h2 className="text-lg md:text-xl font-semibold text-gray-900 dark:text-white">
+            <h2 className="text-lg md:text-xl font-heading font-light text-primary-black dark:text-white">
               Report has been rejected
             </h2>
-            <p className="text-lg md:text-xl font-semibold text-gray-900 dark:text-white">
+            <p className="text-lg md:text-xl font-heading font-light text-primary-black dark:text-white">
               Successfully!
             </p>
           </div>
@@ -33,7 +33,7 @@ export default function RejectSuccessPopup({ isVisible, onClose }: RejectSuccess
           {/* Continue Button */}
           <Button 
             onClick={onClose}
-            className="w-full bg-black hover:bg-gray-900 dark:bg-gray-900 dark:hover:bg-gray-800 text-white rounded-lg h-10 md:h-12 font-medium text-sm md:text-base"
+            className="w-full bg-primary-black hover:bg-secondary-5 dark:bg-gray-900 dark:hover:bg-gray-800 text-primary-white rounded-lg h-10 md:h-12 font-body font-medium text-sm md:text-base"
           >
             Continue
           </Button>

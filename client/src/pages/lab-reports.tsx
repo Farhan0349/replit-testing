@@ -161,7 +161,7 @@ export default function LabReports() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 flex">
+    <div className="min-h-screen bg-bg-gradient-1 dark:bg-gray-900 flex">
       {/* Mobile backdrop */}
       {isSidebarOpen && (
         <div 
@@ -214,8 +214,8 @@ export default function LabReports() {
             <Card className="bg-white dark:bg-gray-800">
               <CardContent className="p-0">
                 {/* Desktop Table Header */}
-                <div className="hidden md:block px-6 py-4 border-b border-gray-100 dark:border-gray-700">
-                  <div className="grid grid-cols-[120px,1fr,1fr,120px] gap-6 text-sm font-medium text-gray-600 dark:text-gray-400">
+                <div className="hidden md:block px-6 py-4 border-b border-secondary-2 dark:border-gray-700">
+                  <div className="grid grid-cols-[120px,1fr,1fr,120px] gap-6 text-sm font-body font-medium text-secondary-5 dark:text-gray-400">
                     <div>Report ID</div>
                     <div>Client Name</div>
                     <div>Report Name</div>
@@ -224,8 +224,8 @@ export default function LabReports() {
                 </div>
 
                 {/* Mobile Table Header */}
-                <div className="md:hidden px-4 py-3 border-b border-gray-100 dark:border-gray-700">
-                  <div className="grid grid-cols-[80px,1fr,1fr,60px] gap-3 text-xs font-medium text-gray-600 dark:text-gray-400">
+                <div className="md:hidden px-4 py-3 border-b border-secondary-2 dark:border-gray-700">
+                  <div className="grid grid-cols-[80px,1fr,1fr,60px] gap-3 text-xs font-body font-medium text-secondary-5 dark:text-gray-400">
                     <div>Report ID</div>
                     <div>Client Name</div>
                     <div>Report Name</div>
@@ -243,7 +243,7 @@ export default function LabReports() {
                       {/* Desktop Layout */}
                       <div className="hidden md:grid md:grid-cols-[120px,1fr,1fr,120px] gap-6 items-center">
                         {/* Report ID */}
-                        <div className="text-sm text-gray-900 dark:text-white font-medium">
+                        <div className="text-sm text-primary-black dark:text-white font-body font-medium">
                           {report.id}
                         </div>
                         
@@ -255,14 +255,14 @@ export default function LabReports() {
                           )}>
                             {report.avatar}
                           </div>
-                          <span className="text-sm text-gray-900 dark:text-white font-medium">
+                          <span className="text-sm text-primary-black dark:text-white font-body font-medium">
                             {report.clientName}
                           </span>
                         </div>
                         
                         {/* Report Name */}
                         <div>
-                          <button className="text-sm text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300 font-medium underline underline-offset-2">
+                          <button className="text-sm text-secondary-4 hover:text-gen-gradient-3 dark:text-blue-400 dark:hover:text-blue-300 font-body font-medium underline underline-offset-2">
                             {report.reportName}
                           </button>
                         </div>

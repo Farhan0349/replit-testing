@@ -41,7 +41,7 @@ export default function Navbar({ onMenuClick, title = "Dashboard" }: NavbarProps
           </Button>
           
           {/* Page Title */}
-          <h1 className="text-xl lg:text-2xl font-semibold text-gray-900 dark:text-white" data-testid="text-page-title">
+          <h1 className="text-xl lg:text-2xl font-heading font-light text-gray-900 dark:text-white" data-testid="text-page-title">
             {title}
           </h1>
         </div>
@@ -81,14 +81,14 @@ export default function Navbar({ onMenuClick, title = "Dashboard" }: NavbarProps
                 data-testid="button-profile"
               >
                 <div className="flex items-center gap-2">
-                  <div className="w-8 h-8 rounded-full bg-gradient-to-br from-orange-400 to-orange-600 flex items-center justify-center">
-                    <span className="text-white text-sm font-medium">A</span>
+                  <div className="w-8 h-8 rounded-full bg-gradient-to-br from-zen-gradient-2 to-zen-gradient-3 flex items-center justify-center">
+                    <span className="text-white text-sm font-body font-medium">A</span>
                   </div>
                   <div className="hidden sm:block text-left">
-                    <div className="text-sm font-medium text-gray-900 dark:text-white" data-testid="text-username">
+                    <div className="text-sm font-body font-medium text-gray-900 dark:text-white" data-testid="text-username">
                       Agniveshaa
                     </div>
-                    <div className="text-xs text-gray-500 dark:text-gray-400" data-testid="text-user-role">
+                    <div className="text-xs font-body text-gray-500 dark:text-gray-400" data-testid="text-user-role">
                       Admin
                     </div>
                   </div>

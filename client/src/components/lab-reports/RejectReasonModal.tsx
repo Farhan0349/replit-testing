@@ -26,7 +26,7 @@ export default function RejectReasonModal({ isOpen, onClose, onSubmit }: RejectR
       <div className="bg-white dark:bg-gray-800 rounded-xl shadow-2xl w-full max-w-md max-h-[90vh] overflow-y-auto md:mt-16 md:mr-4">
         {/* Modal Header */}
         <div className="flex items-center justify-between p-4 md:p-6 border-b border-gray-100 dark:border-gray-700">
-          <h2 className="text-lg md:text-xl font-semibold text-gray-900 dark:text-white">
+          <h2 className="text-lg md:text-xl font-heading font-light text-primary-black dark:text-white">
             Reason
           </h2>
           <button
@@ -45,7 +45,7 @@ export default function RejectReasonModal({ isOpen, onClose, onSubmit }: RejectR
               placeholder="Enter reason to reject the lab report"
               value={reason}
               onChange={(e) => setReason(e.target.value)}
-              className="w-full h-24 md:h-32 resize-none border-gray-200 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-400 rounded-lg text-sm placeholder:text-gray-400"
+              className="w-full h-24 md:h-32 resize-none border-secondary-2 dark:border-gray-600 focus:border-secondary-4 dark:focus:border-blue-400 rounded-lg text-sm font-body placeholder:text-gray-400"
               required
             />
           </div>
@@ -54,7 +54,7 @@ export default function RejectReasonModal({ isOpen, onClose, onSubmit }: RejectR
           <div className="pt-2">
             <Button 
               type="submit"
-              className="w-full bg-black hover:bg-gray-900 dark:bg-gray-900 dark:hover:bg-gray-800 text-white rounded-lg h-10 md:h-11 font-medium text-sm"
+              className="w-full bg-primary-black hover:bg-secondary-5 dark:bg-gray-900 dark:hover:bg-gray-800 text-primary-white rounded-lg h-10 md:h-11 font-body font-medium text-sm"
               disabled={!reason.trim()}
             >
               Send
